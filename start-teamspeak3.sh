@@ -28,7 +28,7 @@ if [ "$download" -eq 1 ]; then
   && echo $TS_VERSION >version
 fi
 
-export LD_LIBRARY_PATH=/data
+export LD_LIBRARY_PATH=".:/data:/data/redist"
 
 TS3ARGS=""
 if [ -e /data/ts3server.ini ]; then
