@@ -37,5 +37,9 @@ else
   TS3ARGS="createinifile=1"
 fi
 
+if [ -n "$SERVERADMIN_PASSWORD" ]; then
+  TS3ARGS="$TS3ARGS serveradmin_password=$SERVERADMIN_PASSWORD"
+fi
+
 exec ./ts3server $TS3ARGS
 
