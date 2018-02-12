@@ -76,3 +76,12 @@ For example, to use a specific version:
 
 Note: a list of valid versions is available [here](http://www.server-residenz.com/tools/ts3versions.json) or you may use [ts3version@github](https://github.com/andreasheil/ts3versions) by your self.
 
+Reset Serveradmin Password
+--------------------------
+
+just start once with environment like this:
+
+    docker run -d -e SERVERADMIN_PASSWORD=topsecret ... --name=ts3-server ...
+
+After that the password was reset and you can restart the container without the parameter as usual.
+
