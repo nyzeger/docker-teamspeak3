@@ -41,5 +41,10 @@ if [ -n "$SERVERADMIN_PASSWORD" ]; then
   TS3ARGS="$TS3ARGS serveradmin_password=$SERVERADMIN_PASSWORD"
 fi
 
+if [ "accept" = "$TS3SERVER_LICENSE" ]; then
+  TS3ARGS="$TS3ARGS license_accepted=1"
+  touch /data/.ts3server_license_accepted
+fi
+
 exec ./ts3server $TS3ARGS
 
