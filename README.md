@@ -24,7 +24,7 @@ If there is no `ts3server.ini` present in the data directory, the server will be
 
 If you are starting the server for the first time, you need the Admin-Token:
 
-    docker run -d -p 9987:9987/udp -p 10011:10011 -p 30033:30033 --name=ts3-server aheil/teamspeak3-server
+    docker run -d -e TS3SERVER_LICENSE=accept -p 9987:9987/udp -p 10011:10011 -p 30033:30033 --name=ts3-server aheil/teamspeak3-server
     docker logs -f ts3-server
 
 There are two important sections in the logfiles:
