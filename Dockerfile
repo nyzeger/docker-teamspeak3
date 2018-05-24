@@ -6,7 +6,7 @@ ENV TS_VERSION LATEST
 ENV LANG C.UTF-8
 
 RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get -y install bzip2 wget ca-certificates yq \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y install bzip2 wget ca-certificates jq \
     && rm -rf /var/lib/apt/lists/* \
     && useradd -M -s /bin/false --uid 1000 teamspeak3 \
     && mkdir /data \
