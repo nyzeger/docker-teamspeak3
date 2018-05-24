@@ -4,9 +4,7 @@ DIR="/data"
 LOG="${DIR}/json.log"
 JSON="https://www.teamspeak.com/versions/server.json"
 JSON_FILE="${DIR}/server.json"
-TSDIR="$DIR"
-CHECK_FILE="${TSDIR}/CHANGELOG"
-CHECK_FILE_AGE=$(( `date +%s` - `stat -L --format %Y $CHECK_FILE` ))
+CHECK_FILE="${DIR}/CHANGELOG"
 TSVERSION=`cat $CHECK_FILE |grep "Server Release" | head -1 | awk '{print $4}'`
 
 wget -q $JSON -P $DIR
