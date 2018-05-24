@@ -1,13 +1,25 @@
 #!/bin/bash
-set -e
-JSON=$(wget -q -O - https://www.server-residenz.com/tools/ts3versions.json)
 
-while read key value; do
-  case $key in
-    \"latest\":)
-      value=${value#*\"}
-      value=${value%\"*}
-      echo "$value"
-      break
-  esac
-done <<<"$JSON"
+DIR="/data"
+LOG="${DIR}/json.log"
+JSON="https://www.teamspeak.com/versions/server.json"
+JSON_FILE="${DIR}/server.json"
+TSDIR="$DIR"
+CHECK_FILE="${TSDIR}/CHANGELOG"
+CHECK_FILE_AGE=$(( `date +%s` - `stat -L --format %Y $CHECK_FILE` ))
+TSVERSION=`cat $CHECK_FILE |grep "Server Release" | head -1 | awk '{print $4}'`
+
+wget -q $JSON -P $DIR
+
+cat $JSON_FILE | jq '.linux.x86_64.mirrors' >> $LOG
+
+url=`cat $LOG | grep 4Netplayers.de`
+url=${url##*\"4Netplayers.de\":}
+url=${url%%,*}
+url=$(echo "$url" | sed 's/\"//g')
+NEWVERSION=${url##*-}
+NEWVERSION=${NEWVERSION%.tar*}
+
+rm $JSON_FILE $LOG
+
+echo $NEWVERSION
